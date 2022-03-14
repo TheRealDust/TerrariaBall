@@ -5,5 +5,7 @@ Much of that mod's code is poorly optimized, typically due to its age. As a resu
 This is by no means a replacement for the upcoming 1.1 release, and we encourage users to play on any updated version of the original mod should it become available.
 
 All credit for the assets used in this mod (including but not limited to sounds and sprites), the mechanics and of course the idea itself goes to the developers of the original mod, who you can find over at:
+
 Github: https://github.com/dbtr/DBZMOD
+
 Discord: https://discord.com/invite/NqUvkJQWuA
