@@ -17,6 +17,17 @@ namespace TerrariaBall
 
         public static ModHotKey ChargeKey;
 
+        #region Ki Fragments
+
+        /// Increase Ki items - used/unused bool
+        public bool KiFragLevel1 = false;
+        public bool KiFragLevel2 = false;
+        public bool KiFragLevel3 = false;
+        public bool KiFragLevel4 = false;
+        public bool KiFragLevel5 = false;
+
+        #endregion
+
         public void ProcessCharge()
         {
             if (ChargeKey.Current && currentKi < maxKi)
@@ -31,6 +42,11 @@ namespace TerrariaBall
             {
                 ["maxKi"] = maxKi,
                 ["kiRegenRate"] = kiRegenRate,
+                ["KiFragLevel1"] = KiFragLevel1,
+                ["KiFragLevel2"] = KiFragLevel2,
+                ["KiFragLevel3"] = KiFragLevel3,
+                ["KiFragLevel4"] = KiFragLevel4,
+                ["KiFragLevel5"] = KiFragLevel5,
             };
         }
 
@@ -38,6 +54,11 @@ namespace TerrariaBall
         {
             maxKi = tag.GetInt("maxKi");
             kiRegenRate = tag.GetInt("kiRegenRate");
+            KiFragLevel1 = tag.GetBool("KiFragLevel1");
+            KiFragLevel2 = tag.GetBool("KiFragLevel2");
+            KiFragLevel3 = tag.GetBool("KiFragLevel3");
+            KiFragLevel4 = tag.GetBool("KiFragLevel4");
+            KiFragLevel5 = tag.GetBool("KiFragLevel5");
         }
     }
 }
