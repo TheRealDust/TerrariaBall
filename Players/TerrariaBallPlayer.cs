@@ -1,5 +1,6 @@
 using System;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace TerrariaBall
 {
@@ -22,6 +23,21 @@ namespace TerrariaBall
             {
                 currentKi = Math.Min(currentKi + kiRegenRate, maxKi);
             }
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound
+            {
+                ["maxKi"] = maxKi,
+                ["kiRegenRate"] = kiRegenRate,
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            maxKi = tag.GetInt("maxKi");
+            kiRegenRate = tag.GetInt("kiRegenRate");
         }
     }
 }
