@@ -1,0 +1,3 @@
+displayName = Terraria Ball
+author = TheRealDust
+version = 0.1
