@@ -10,6 +10,17 @@ namespace TerrariaBall.NPCs
 {
     public class TerrariaBallGlobalNPC : GlobalNPC
     {
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        {
+            // Allow merchant to sell scrap metal for 5 silver
+            if (type == NPCID.Merchant)
+            {
+                shop.item[nextSlot].SetDefaults(mod.ItemType("ScrapMetal"));
+                shop.item[nextSlot].shopCustomPrice = 500;
+                nextSlot++;
+            }
+        }
+
         public override void NPCLoot(NPC npc)
         {
             Player player = Main.player[Main.myPlayer];
@@ -102,6 +113,26 @@ namespace TerrariaBall.NPCs
             if (NPC.downedGolemBoss && npc.type == NPCID.Demon && Main.rand.Next(DemonicSoul.DropRate) == 0)
             {
                 DropItem(mod.ItemType("DemonicSoul"), Main.rand.Next(1, DemonicSoul.MaxDrop));
+            }
+
+            // Katchin Scale
+            if (npc.type == NPCID.DukeFishron)
+            {
+                DropItem(mod.ItemType("KatchinScale"), Main.rand.Next(KatchinScale.MinDrop, KatchinScale.MaxDrop));
+            }
+
+            // Radiant Fragment
+            if (player.ZoneTowerSolar || player.ZoneTowerNebula || player.ZoneTowerStardust || player.ZoneTowerVortex)
+            {
+                if (Main.expertMode)
+                {
+                    DropItem(mod.ItemType("RadiantFragment"), Main.rand.Next(RadiantFragment.ExpertMinDrop, RadiantFragment.ExpertMaxDrop));
+
+                }
+                else
+                {
+                    DropItem(mod.ItemType("RadiantFragment"), Main.rand.Next(RadiantFragment.MinDrop, RadiantFragment.MaxDrop));
+                }
             }
         }
     }
