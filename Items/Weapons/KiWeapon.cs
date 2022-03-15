@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace TerrariaBall.Items.Weapons
 {
@@ -56,7 +57,22 @@ namespace TerrariaBall.Items.Weapons
         public override bool CanUseItem(Player player)
         {
             TerrariaBallPlayer modPlayer = player.GetModPlayer<TerrariaBallPlayer>();
-            return modPlayer.currentKi >= kiCost;
+            return modPlayer.currentKi >= kiCost && !TerrariaBallPlayer.ChargeKey.Current;
+        }
+
+        public virtual void SafeShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+        }
+
+        public sealed override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (player.whoAmI == Main.myPlayer)
+            {
+                TerrariaBallPlayer modPlayer = player.GetModPlayer<TerrariaBallPlayer>();
+                modPlayer.currentKi -= kiCost;
+            }
+            SafeShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+            return true;
         }
     }
 }

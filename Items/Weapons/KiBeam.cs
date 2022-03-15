@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
 namespace TerrariaBall.Items.Weapons
@@ -9,7 +8,8 @@ namespace TerrariaBall.Items.Weapons
     {
         public override void SafeSetDefaults()
         {
-            kiCost = 2;
+            kiCost = 60;
+
             item.shoot = mod.ProjectileType("KiBeamProjectile");
             item.shootSpeed = 70f;
             item.damage = 17;
@@ -17,7 +17,7 @@ namespace TerrariaBall.Items.Weapons
             item.useStyle = 5;
             item.UseSound = SoundID.Item12;
             item.useAnimation = 24;
-            item.useTime = 24;
+            item.useTime = 60;
             item.width = 40;
             item.noUseGraphic = true;
             item.height = 40;
@@ -31,14 +31,13 @@ namespace TerrariaBall.Items.Weapons
             DisplayName.SetDefault("Ki Beam");
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override void SafeShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 55f;
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
             {
                 position += muzzleOffset;
             }
-            return true;
         }
     }
 }

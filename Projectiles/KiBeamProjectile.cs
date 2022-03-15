@@ -14,8 +14,21 @@ namespace TerrariaBall.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.aiStyle = 1;
             aiType = 14;
+            projectile.width = 6;
+            projectile.height = 174;
+            projectile.light = 1f;
+            projectile.knockBack = 1.0f;
+            projectile.alpha = 220;
+            projectile.friendly = true;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+            projectile.netUpdate = true;
+            projectile.penetrate = -1;
+            projectile.timeLeft = 120;
+            projectile.aiStyle = 1;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 12;
+            ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
