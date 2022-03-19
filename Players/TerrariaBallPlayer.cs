@@ -8,16 +8,28 @@ namespace TerrariaBall
 {
     public partial class TerrariaBallPlayer : ModPlayer
     {
+        private int _currentKi = 0;
+
         /// The current amount of ki the player has
-        public int currentKi = 0;
+        public int currentKi
+        {
+            get { return _currentKi; }
+        }
+
+        private int _maxKi = 1000;
 
         /// The max amount of ki this player can store
-        public int maxKi = 1000;
+        public int maxKi
+        {
+            get { return _maxKi + bonusMaxKi; }
+        }
 
         /// How much ki regenerates per-tick (when charging)
         public int kiRegenRate = 1;
 
         #region Buffs
+
+        public int bonusMaxKi = 0;
 
         /// A multiplier on the damage of ki weapons
         public float kiDamageMultiplier = 1.0f;
@@ -40,7 +52,7 @@ namespace TerrariaBall
         #endregion
 
         /// Whether the player is a God
-        public bool godMode = true;
+        public bool godMode = false;
 
         public static ModHotKey ChargeKey;
 
@@ -83,28 +95,34 @@ namespace TerrariaBall
         /// The amount of ki will be floored at 0.
         public void UseKi(int amount)
         {
-            currentKi = Math.Min(currentKi - (int)((float)amount * kiDrainMultiplier), 0);
+            _currentKi = Math.Min(_currentKi - (int)((float)amount * kiDrainMultiplier), 0);
+        }
+
+        /// Permanently increase the max ki of this player by a constant amount.
+        public void PermanentlyIncreaseMaxKi(int amount)
+        {
+            _maxKi += amount;
         }
 
         public void ProcessCharge()
         {
-            if (ChargeKey.Current && currentKi < maxKi)
+            if (ChargeKey.Current && _currentKi < maxKi)
             {
-                currentKi = Math.Min(currentKi + (int)((float)kiRegenRate * kiRechargeRateMultiplier), maxKi);
+                _currentKi = Math.Min(_currentKi + (int)((float)kiRegenRate * kiRechargeRateMultiplier), maxKi);
             }
             else if (passiveKiRegen > 0)
             {
-                currentKi = Math.Min(currentKi + passiveKiRegen, maxKi);
+                _currentKi = Math.Min(_currentKi + passiveKiRegen, maxKi);
             }
             else if (passiveKiRegen < 0)
             {
-                currentKi = Math.Max(currentKi - passiveKiRegen, 0);
+                _currentKi = Math.Max(_currentKi - passiveKiRegen, 0);
             }
         }
 
         public override void PostUpdateRunSpeeds()
         {
-            if (ChargeKey.Current && currentKi < maxKi)
+            if (ChargeKey.Current && _currentKi < maxKi)
             {
                 player.maxRunSpeed = 0.5f;
                 player.accRunSpeed = 0.5f;
@@ -129,7 +147,7 @@ namespace TerrariaBall
         {
             return new TagCompound
             {
-                ["maxKi"] = maxKi,
+                ["maxKi"] = _maxKi,
                 ["kiRegenRate"] = kiRegenRate,
                 ["KiFragLevel1"] = KiFragLevel1,
                 ["KiFragLevel2"] = KiFragLevel2,
@@ -141,7 +159,7 @@ namespace TerrariaBall
 
         public override void Load(TagCompound tag)
         {
-            maxKi = tag.GetInt("maxKi");
+            _maxKi = tag.GetInt("maxKi");
             kiRegenRate = tag.GetInt("kiRegenRate");
             KiFragLevel1 = tag.GetBool("KiFragLevel1");
             KiFragLevel2 = tag.GetBool("KiFragLevel2");

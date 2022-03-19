@@ -42,7 +42,7 @@ namespace TerrariaBall.Items.Consumables.IncreaseMaxKi
         {
             TerrariaBallPlayer modPlayer = player.GetModPlayer<TerrariaBallPlayer>();
             modPlayer.KiFragLevel1 = true;
-            modPlayer.maxKi += 1000;
+            modPlayer.PermanentlyIncreaseMaxKi(1000);
 
             return true;
         }
