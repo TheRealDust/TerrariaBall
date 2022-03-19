@@ -22,7 +22,7 @@ namespace TerrariaBall.Items.Materials.KiCrystals
             item.height = 20;
             item.maxStack = 9999;
             item.value = 100;
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
         }
     }
 }

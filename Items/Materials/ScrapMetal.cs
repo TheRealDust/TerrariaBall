@@ -4,15 +4,12 @@ using Terraria.ModLoader;
 
 namespace TerrariaBall.Items.Materials
 {
-    public class PossessedSoul : ModItem 
+    public class ScrapMetal : ModItem 
     {
-        public static int DropRate = 3;
-        public static int MaxDrop = 6;
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Soul of the Possessed");
-            Tooltip.SetDefault("The soul of a reanimated foe.");
+            DisplayName.SetDefault("Scrap Metal");
+            Tooltip.SetDefault("An old piece of metal. Seems like the type of junk a merchant would sell.");
         }
 
         public override void SetDefaults()
@@ -21,7 +18,7 @@ namespace TerrariaBall.Items.Materials
             item.height = 20;
             item.maxStack = 9999;
             item.value = 100;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.White;
         }
     }
 }

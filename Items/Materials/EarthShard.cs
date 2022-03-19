@@ -21,7 +21,7 @@ namespace TerrariaBall.Items.Materials
             item.height = 20;
             item.maxStack = 9999;
             item.value = 100;
-            item.rare = ItemRarityID.Orange;
+            item.rare = ItemRarityID.Green;
         }
     }
 }
