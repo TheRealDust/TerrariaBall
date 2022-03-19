@@ -19,8 +19,9 @@ namespace TerrariaBall.Projectiles
         public override void SetDefaults()
         {
             aiType = 14;
-            projectile.width = 6;
-            projectile.height = 174;
+            projectile.width = 10;
+            projectile.height = 10;
+            projectile.gfxOffY = 174;
             projectile.light = 1f;
             projectile.knockBack = 1.0f;
             projectile.alpha = 220;

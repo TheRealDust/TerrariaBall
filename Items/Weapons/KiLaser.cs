@@ -1,5 +1,7 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using TerrariaBall.Projectiles;
 using Microsoft.Xna.Framework;
 
 namespace TerrariaBall.Items.Weapons
@@ -10,7 +12,7 @@ namespace TerrariaBall.Items.Weapons
         {
             kiCost = 60;
 
-            item.shoot = mod.ProjectileType("KiLaserProjectile");
+            item.shoot = ModContent.ProjectileType<KiLaserProjectile>();
             item.shootSpeed = 70f;
             item.damage = 17;
             item.knockBack = 5f;

@@ -112,17 +112,18 @@ namespace TerrariaBall
             }
         }
 
-        public override void PostUpdate()
-        {
-            if (ChargeKey.JustPressed)
-            {
-                player.statDefense = (int)((float)player.statDefense * 1.2);
-            }
-            else if (ChargeKey.JustReleased)
-            {
-                player.statDefense = (int)((float)player.statDefense / 1.2);
-            }
-        }
+        // fixme this does not work
+        // public override void PostUpdate()
+        // {
+        //     if (ChargeKey.JustPressed)
+        //     {
+        //         player.statDefense = (int)((float)player.statDefense * 1.2);
+        //     }
+        //     else if (ChargeKey.JustReleased)
+        //     {
+        //         player.statDefense = (int)((float)player.statDefense / 1.2);
+        //     }
+        // }
 
         public override TagCompound Save()
         {
