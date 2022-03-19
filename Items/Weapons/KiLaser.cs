@@ -25,7 +25,7 @@ namespace TerrariaBall.Items.Weapons
             item.height = 40;
             item.autoReuse = true;
             item.value = 550;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
         }
 
         public override void SetStaticDefaults()
