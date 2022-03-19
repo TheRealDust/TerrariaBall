@@ -27,16 +27,6 @@ namespace TerrariaBall.Items.Weapons
             item.summon = false;
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
-        {
-            // todo
-        }
-
-        public override void GetWeaponCrit(Player player, ref int crit)
-        {
-            // todo
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             // Get the vanilla damage tooltip
@@ -69,7 +59,7 @@ namespace TerrariaBall.Items.Weapons
             if (player.whoAmI == Main.myPlayer)
             {
                 TerrariaBallPlayer modPlayer = player.GetModPlayer<TerrariaBallPlayer>();
-                modPlayer.currentKi -= kiCost;
+                modPlayer.UseKi(kiCost);
             }
             SafeShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
             return true;
