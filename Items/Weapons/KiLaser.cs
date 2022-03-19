@@ -4,13 +4,13 @@ using Microsoft.Xna.Framework;
 
 namespace TerrariaBall.Items.Weapons
 {
-    public class KiBeam : KiWeapon
+    public class KiLaser : KiWeapon
     {
         public override void SafeSetDefaults()
         {
             kiCost = 60;
 
-            item.shoot = mod.ProjectileType("KiBeamProjectile");
+            item.shoot = mod.ProjectileType("KiLaserProjectile");
             item.shootSpeed = 70f;
             item.damage = 17;
             item.knockBack = 5f;
@@ -28,7 +28,7 @@ namespace TerrariaBall.Items.Weapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ki Beam");
+            DisplayName.SetDefault("Ki Laser");
         }
 
         public override void SafeShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

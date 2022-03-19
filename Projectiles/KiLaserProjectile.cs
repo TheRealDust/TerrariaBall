@@ -6,14 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TerrariaBall.Projectiles
 {
-    public class KiBeamProjectile : KiProjectile
+    public class KiLaserProjectile : KiProjectile
     {
         private int pierced = 0;
         private int maxPiercing = 3;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("KiBeamProjectile");
+            DisplayName.SetDefault("KiLaserProjectile");
         }
 
         public override void SetDefaults()
