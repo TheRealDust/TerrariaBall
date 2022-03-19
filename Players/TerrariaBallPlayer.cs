@@ -15,6 +15,9 @@ namespace TerrariaBall
         /// How much ki regenerates per-tick
         public int kiRegenRate = 1;
 
+        /// Whether the player is a God
+        public bool godMode = true;
+
         public static ModHotKey ChargeKey;
 
         #region Ki Fragments
@@ -33,6 +36,28 @@ namespace TerrariaBall
             if (ChargeKey.Current && currentKi < maxKi)
             {
                 currentKi = Math.Min(currentKi + kiRegenRate, maxKi);
+            }
+        }
+
+        public override void PostUpdateRunSpeeds()
+        {
+            if (ChargeKey.Current && currentKi < maxKi)
+            {
+                player.maxRunSpeed = 0.5f;
+                player.accRunSpeed = 0.5f;
+                player.runAcceleration = 1;
+            }
+        }
+
+        public override void PostUpdate()
+        {
+            if (ChargeKey.JustPressed)
+            {
+                player.statDefense = (int)((float)player.statDefense * 1.2);
+            }
+            else if (ChargeKey.JustReleased)
+            {
+                player.statDefense = (int)((float)player.statDefense / 1.2);
             }
         }
 

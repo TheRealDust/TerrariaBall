@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -7,6 +8,9 @@ namespace TerrariaBall.Projectiles
 {
     public class KiBeamProjectile : KiProjectile
     {
+        private int pierced = 0;
+        private int maxPiercing = 3;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("KiBeamProjectile");
@@ -29,6 +33,27 @@ namespace TerrariaBall.Projectiles
             projectile.aiStyle = 1;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (pierced++ < maxPiercing)
+            {
+                damage = Math.Max(damage / pierced, 0);
+
+                if (damage == 0)
+                {
+                    pierced = maxPiercing;
+                }
+            }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (pierced == maxPiercing)
+            {
+                projectile.Kill();
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
