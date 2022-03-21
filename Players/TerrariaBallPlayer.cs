@@ -104,6 +104,18 @@ namespace TerrariaBall
             _maxKi += amount;
         }
 
+        /// Debug function to reset max ki (this will remove all fragments from player history)
+        /// Note that this will not effect temporary buffs from things like armour
+        public void ResetMaxKi()
+        {
+            _maxKi = 0;
+            KiFragLevel1 = false;
+            KiFragLevel2 = false;
+            KiFragLevel3 = false;
+            KiFragLevel4 = false;
+            KiFragLevel5 = false;
+        }
+
         public void ProcessCharge()
         {
             if (ChargeKey.Current && _currentKi < maxKi)
