@@ -6,6 +6,6 @@ This is by no means a replacement for the upcoming 1.1 release, and we encourage
 
 All credit for the assets used in this mod (including but not limited to sounds and sprites), the mechanics and of course the idea itself goes to the developers of the original mod, who you can find over at:
 
-Github: https://github.com/dbtr/DBZMOD
+Github: https://github.com/AlphEEE/DBZMOD
 
 Discord: https://discord.com/invite/NqUvkJQWuA
